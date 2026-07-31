@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Girlfriend Day 💕</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blush:     #f2c4ce;
+      --rose:      #c9687a;
+      --deep-rose: #8b3a4a;
+      --ivory:     #fdf6f0;
+      --gold:      #d4a86a;
+      --dark:      #2a1a1f;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--dark);
+      color: var(--ivory);
+      overflow-x: hidden;
+    }
+
+    /* ── FLOATING PETALS ── */
+    .petal-canvas {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+      gap: 2.5rem;
+      padding: 1.2rem 2rem;
+      background: linear-gradient(to bottom, rgba(42,26,31,0.95), transparent);
+      letter-spacing: 0.15em;
+      font-size: 0.7rem;
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+    nav a {
+      color: var(--blush);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    nav a:hover { color: var(--gold); }
+
+    /* ── HERO ── */
+    #hero {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    /* Animated gradient background */
+    #hero::before {
+      content: '';
+      position: absolute;
+      inset: -50%;
+      background: conic-gradient(
+        from 0deg at 50% 50%,
+        #3d1a24 0deg,
+        #6b2c3e 60deg,
+        #3d1a24 120deg,
+        #8b3a4a 180deg,
+        #3d1a24 240deg,
+        #6b2c3e 300deg,
+        #3d1a24 360deg
+      );
+      animation: rotateBg 20s linear infinite;
+      z-index: -2;
+    }
+    #hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, rgba(42,26,31,0.2) 0%, rgba(42,26,31,0.75) 70%);
+      z-index: -1;
+    }
+    @keyframes rotateBg { to { transform: rotate(360deg); } }
+
+    .hero-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.2rem;
+      animation: fadeUp 1s 0.3s both;
+    }
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.5rem, 10vw, 8rem);
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.05;
+      color: var(--ivory);
+      animation: fadeUp 1s 0.6s both;
+    }
+    .hero-title span { color: var(--blush); }
+    .hero-subtitle {
+      margin-top: 1.5rem;
+      font-size: 0.85rem;
+      letter-spacing: 0.2em;
+      color: var(--blush);
+      opacity: 0.8;
+      animation: fadeUp 1s 0.9s both;
+    }
+    .hero-scroll {
+      position: absolute;
+      bottom: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--blush);
+      opacity: 0.6;
+      animation: fadeUp 1s 1.2s both;
+    }
+    .hero-scroll::after {
+      content: '';
+      width: 1px;
+      height: 3rem;
+      background: linear-gradient(to bottom, var(--blush), transparent);
+      animation: scrollLine 1.5s ease-in-out infinite;
+    }
+    @keyframes scrollLine { 0%,100%{opacity:0.6} 50%{opacity:1} }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── SECTION SHARED ── */
+    section {
+      position: relative;
+      z-index: 1;
+      padding: 6rem 2rem;
+    }
+    .section-label {
+      text-align: center;
+      font-size: 0.65rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.8rem;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      text-align: center;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--ivory);
+      margin-bottom: 3.5rem;
+    }
+    .divider {
+      width: 60px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+      margin: 0 auto 3.5rem;
+    }
+
+    /* ── MUSIC PLAYER ── */
+    #music {
+      background: linear-gradient(135deg, #1e0f14, #2a1a1f);
+      text-align: center;
+    }
+    .player-shell {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(242,196,206,0.15);
+      border-radius: 20px;
+      padding: 2.5rem 3rem;
+      max-width: 480px;
+      width: 100%;
+    }
+    .player-disc {
+      width: 100px; height: 100px;
+      border-radius: 50%;
+      background: conic-gradient(var(--rose), var(--deep-rose), var(--gold), var(--rose));
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+      animation: spin 8s linear infinite paused;
+    }
+    .player-disc.spinning { animation-play-state: running; }
+    .player-disc::after {
+      content: '';
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: var(--dark);
+      position: absolute;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .player-info { text-align: center; }
+    .player-song {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-style: italic;
+      color: var(--ivory);
+    }
+    .player-artist {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      color: var(--blush);
+      opacity: 0.7;
+      margin-top: 0.3rem;
+    }
+    .player-controls { display: flex; gap: 1.2rem; align-items: center; }
+    .btn-play {
+      width: 54px; height: 54px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--rose), var(--deep-rose));
+      border: none;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 0 20px rgba(201,104,122,0.4);
+    }
+    .btn-play:hover { transform: scale(1.08); box-shadow: 0 0 30px rgba(201,104,122,0.6); }
+    .btn-play svg { fill: white; margin-left: 3px; }
+    .btn-skip {
+      background: none; border: none; cursor: pointer;
+      color: var(--blush); opacity: 0.6;
+      font-size: 1.2rem;
+      transition: opacity 0.2s;
+      padding: 0.5rem;
+    }
+    .btn-skip:hover { opacity: 1; }
+    .player-progress {
+      width: 100%;
+      display: flex; flex-direction: column; gap: 0.5rem;
+    }
+    .progress-bar-wrap {
+      width: 100%;
+      height: 3px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 2px;
+      cursor: pointer;
+      position: relative;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(to right, var(--rose), var(--gold));
+      border-radius: 2px;
+      width: 0%;
+      transition: width 0.5s linear;
+    }
+    .progress-times {
+      display: flex; justify-content: space-between;
+      font-size: 0.65rem; color: var(--blush); opacity: 0.5;
+    }
+    .player-url-wrap {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      align-items: flex-start;
+    }
+    .player-url-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      color: var(--blush);
+      opacity: 0.7;
+      text-transform: uppercase;
+    }
+    .player-url-input {
+      width: 100%;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(242,196,206,0.2);
+      border-radius: 8px;
+      padding: 0.6rem 0.9rem;
+      color: var(--ivory);
+      font-size: 0.8rem;
+      font-family: 'Montserrat', sans-serif;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+    .player-url-input:focus { border-color: var(--rose); }
+    .player-url-input::placeholder { color: rgba(242,196,206,0.3); }
+    .player-url-btn {
+      align-self: flex-end;
+      background: linear-gradient(135deg, var(--rose), var(--deep-rose));
+      border: none;
+      border-radius: 8px;
+      padding: 0.5rem 1.2rem;
+      color: white;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      font-family: 'Montserrat', sans-serif;
+      transition: opacity 0.2s;
+    }
+    .player-url-btn:hover { opacity: 0.85; }
+
+    /* ── GALLERY ── */
+    #gallery { background: var(--dark); }
+    .gallery-grid{
+      max-width:1100px;
+      margin:0 auto;
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:18px;
+    }
+    .photo-slot{
+      position:relative;
+      overflow:hidden;
+      border-radius:18px;
+      box-shadow:0 10px 30px rgba(0,0,0,.25);
+      transition:.4s;
+      aspect-ratio:3/4;
+    }
+    .photo-slot:hover{
+      transform:translateY(-8px);
+      box-shadow:0 25px 60px rgba(201,104,122,.35);
+    }
+    .photo-slot img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      transition:.5s;
+    }
+    .photo-slot:hover img{transform:scale(1.08);}
+    .caption{
+      position:absolute;
+      left:0;right:0;bottom:0;
+      padding:14px;
+      background:linear-gradient(transparent,rgba(0,0,0,.85));
+      color:#fff;
+      text-align:center;
+      font-family:'Cormorant Garamond',serif;
+      font-size:1.1rem;
+    }
+    .gallery-quote{
+      text-align:center;
+      margin-top:2.5rem;
+      color:var(--blush);
+      font-family:'Cormorant Garamond',serif;
+      font-size:1.5rem;
+      font-style:italic;
+      opacity:.9;
+    }
+
+    /* ── LOVE LETTER ── */
+    #letter {
+      background: linear-gradient(135deg, #1e0f14, #2a1a1f);
+    }
+    .letter-card {
+      max-width: 680px;
+      margin: 0 auto;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(242,196,206,0.12);
+      border-radius: 20px;
+      padding: 3.5rem;
+      position: relative;
+    }
+    .letter-card::before {
+      content: '"';
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 8rem;
+      color: var(--rose);
+      opacity: 0.15;
+      position: absolute;
+      top: 1rem; left: 2rem;
+      line-height: 1;
+    }
+    .letter-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 300;
+      line-height: 1.9;
+      color: var(--ivory);
+      opacity: 0.9;
+      white-space: pre-wrap;
+      min-height: 180px;
+      outline: none;
+      width: 100%;
+      background: transparent;
+      border: none;
+      resize: none;
+      caret-color: var(--rose);
+    }
+    .letter-text:empty::before {
+      content: attr(data-placeholder);
+      color: rgba(253,246,240,0.25);
+      pointer-events: none;
+    }
+    .letter-footer {
+      margin-top: 2.5rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .letter-sig {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--gold);
+      opacity: 0.8;
+      outline: none;
+      background: transparent;
+      border: none;
+      min-width: 120px;
+    }
+    .letter-sig:empty::before {
+      content: attr(data-placeholder);
+      color: rgba(212,168,106,0.3);
+    }
+    .letter-hearts { color: var(--rose); font-size: 1.2rem; letter-spacing: 0.3rem; }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 3rem 2rem;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--blush);
+      opacity: 0.4;
+      z-index: 1;
+      position: relative;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 700px) {
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+      }
+      .photo-slot:nth-child(1) { grid-column: 1/3; }
+      .photo-slot:nth-child(2) { grid-column: 1/3; }
+      .photo-slot:nth-child(3) { grid-column: 1/2; }
+      .photo-slot:nth-child(4) { grid-column: 2/3; }
+      .photo-slot:nth-child(5) { grid-column: 1/3; }
+      .letter-card { padding: 2rem 1.5rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      #hero::before { animation: none; }
+      .player-disc { animation: none; }
+    }
+  </style>
+</head>
+<body>
+
+<canvas class="petal-canvas" id="petalCanvas"></canvas>
+
+<nav>
+  <a href="#hero">Home</a>
+  <a href="#music">Music</a>
+  <a href="#gallery">Gallery</a>
+  <a href="#letter">My Letter</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <p class="hero-label">August 1st · National Girlfriend Day</p>
+  <h1 class="hero-title">For the one<br><span>who holds my heart</span></h1>
+  <p class="hero-subtitle">A little tribute to someone extraordinary</p>
+  <div class="hero-scroll">scroll</div>
+</section>
+
+<!-- MUSIC -->
+<section id="music">
+  <p class="section-label">For Your Ears</p>
+  <h2 class="section-title">Our Song</h2>
+  <div class="divider"></div>
+
+  <div style="display:flex;justify-content:center;">
+    <div class="player-shell">
+      <div class="player-disc" id="disc">
+        <!-- vinyl hole via ::after -->
+      </div>
+
+      <div class="player-info">
+        <div class="player-song" id="Tum Hi Ho">SRITAMA MUKHERJEE</div>
+        <div class="player-artist" id="Arijit Singh">I LOVE YOU</div>
+      </div>
+
+      <div class="player-controls">
+        <button class="btn-skip" id="btnRewind" title="Restart" onclick="seekTo(0)">&#9664;&#9664;</button>
+        <button class="btn-play" id="btnPlay" onclick="togglePlay()">
+          <svg id="playIcon" viewBox="0 0 24 24" width="22" height="22"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+        <button class="btn-skip" title="+15s" onclick="seekBy(15)">&#9654;&#9654;</button>
+      </div>
+
+      <div class="player-progress">
+        <div class="progress-bar-wrap" onclick="seekClick(event)" id="progressWrap">
+          <div class="progress-bar-fill" id="progressFill"></div>
+        </div>
+        <div class="progress-times">
+          <span id="timeElapsed">0:00</span>
+          <span id="timeDuration">0:00</span>
+        </div>
+      </div>
+
+      </div></div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <p class="section-label">Every Smile, Every Memory</p>
+  <h2 class="section-title">The Woman Who Stole My Heart ❤️</h2>
+  <div class="divider"></div>
+
+  <div class="gallery-grid" id="galleryGrid">
+  </div>
+  <p class="gallery-quote">"Every picture tells a story, but every picture of you tells the story of my happiness. ❤️"</p>
+</section>
+
+<!-- LOVE LETTER -->
+<section id="letter">
+  <p class="section-label">From My Heart</p>
+  <h2 class="section-title">A Letter for You</h2>
+  <div class="divider"></div>
+
+  <div class="letter-card">
+    <div class="letter-text"
+         
+         >
+# **To My Wife, My Home, My Safe Place, My Greatest Blessing, and the Most Beautiful Gift God Has Ever Given Me ❤️**
+
+**My Love,**
+
+কখনও কখনও আমি ভাবি, কীভাবে একজন মানুষ আরেকজনের পুরো পৃথিবীটাই বদলে দিতে পারে। তোমার আগে জীবন শুধু চলেই যাচ্ছিল। কিন্তু তুমি আমার জীবনে আসার পর থেকে প্রতিটি সাধারণ দিন অর্থপূর্ণ হয়ে উঠেছে। প্রতিটি হাসি আরও উজ্জ্বল হয়েছে, প্রতিটি স্বপ্নকে তাড়া করার মতো মনে হয়েছে, আর আমার প্রতিটি হৃদস্পন্দন যেন নতুন একটি কারণ খুঁজে পেয়েছে।
+
+মানুষ বলে, ঈশ্বর আমাদের রক্ষা করার জন্য ফেরেশতা পাঠান। ফেরেশতা সম্পর্কে আমি জানি না, কিন্তু আমি জানি—ঈশ্বর তোমাকেই আমার জীবনে পাঠিয়েছেন। তুমি শুধু আমার ভালোবাসার মানুষ নও, তুমি সেই সবচেয়ে বড় আশীর্বাদ, যাকে ঈশ্বর আমার ভাগ্যে লিখে দিয়েছেন। তোমার সঙ্গে আমার দেখা হওয়া কোনো কাকতালীয় ঘটনা ছিল না; এটা ছিল নিয়তি। আর তোমাকে ভালোবাসা আমার কোনো সিদ্ধান্ত নয়, এটা আমার হৃদয়ের সবচেয়ে স্বাভাবিক অনুভূতি।
+
+একটা কথা আমি চাই তুমি সারাজীবন মনে রাখো।
+
+আমার মায়ের পর, আমি এই পৃথিবীতে সবচেয়ে বেশি তোমাকেই ভালোবেসেছি।
+
+আমার মায়ের পর, একমাত্র তোমার বকুনিই আমি সবচেয়ে বেশি ভয় পাই—তোমাকে ভয় পাই বলে নয়, বরং আমি কখনও তোমার হতাশার কারণ হতে চাই না, কখনও চাই না আমার জন্য তোমার মুখের হাসি হারিয়ে যাক। তোমার রাগের মধ্যেও আমি তোমার ভালোবাসা খুঁজে পাই, আর আমার কারণে তোমার হাসি ম্লান হয়ে যাওয়ার কষ্টের চেয়ে বড় কষ্ট আমার কাছে আর কিছুই নয়।
+
+আমার মায়ের পর, আমি সবচেয়ে বেশি সুখী হয়েছি তোমার সঙ্গেই।
+
+যখন আমার মন ঝড়ে ভরে যেত, তুমি হয়ে উঠতে আমার শান্তি। যখন আমি দুর্বল হয়ে পড়তাম, তুমি হয়ে উঠতে আমার শক্তি। যখন আমি হাসতে ভুলে যেতাম, তুমি আমার মুখে আবার হাসি ফিরিয়ে দিতে। জীবনে যত কঠিন সময়ই আসুক না কেন, আমি কখনও হাল ছাড়ার কথা ভাবি না—আমি শুধু তোমার কথা ভাবি। কারণ তুমি আমাকে মনে করিয়ে দাও, প্রতিটি লড়াই সার্থক, যদি সেই পথের শেষ প্রান্তে তুমি অপেক্ষা করে থাকো।
+
+তুমি শুধু সেই নারী নও যাকে আমি ভালোবাসি।
+
+তুমি আমার সবচেয়ে নিরাপদ আশ্রয়।
+
+তুমি আমার সবচেয়ে প্রিয় মানুষ।
+
+তুমি আমার জীবনের সবচেয়ে বড় শান্তি।
+
+তুমি আমার চিরকালের ঘর।
+
+আমি প্রতিশ্রুতি দিতে পারি না যে আমি সবসময় নিখুঁত হব, কারণ আমিও একজন সাধারণ মানুষ। আমার ভুল হতে পারে, কখনও হয়তো তোমাকে বিরক্ত করব, কখনও হয়তো আমার মনের কথা ঠিকভাবে প্রকাশ করতে পারব না। কিন্তু একটি প্রতিশ্রুতি আমি নিঃসন্দেহে দিতে পারি—আমি কখনও তোমাকে বেছে নেওয়া বন্ধ করব না, কখনও তোমাকে সম্মান করা বন্ধ করব না, কখনও তোমাকে ভালোবাসা বন্ধ করব না, আর কখনও তোমার হাসির জন্য লড়াই করা বন্ধ করব না। জীবন আমাকে যেখানেই নিয়ে যাক না কেন, আমার হাত সবসময় তোমার হাতটাই খুঁজবে, আমার হৃদয় সবসময় তোমারই থাকবে, আর আমার প্রতিটি স্বপ্নের কেন্দ্রে থাকবে শুধু তুমি।
+
+আমি প্রতিদিন ঈশ্বরের কাছে প্রার্থনা করি, তিনি যেন তোমার মুখে সবসময় হাসি রাখেন, তোমাকে সুস্থ রাখেন, নিরাপদ রাখেন এবং আমার জীবনের প্রতিটি আগামীকাল যেন তোমার সঙ্গেই কাটানোর সুযোগ দেন। তিনি আমাকে তাঁর সবচেয়ে মূল্যবান উপহারটি দিয়েছেন—তুমি। আর আমি তাঁকে কথা দিচ্ছি, আমার পুরো জীবন দিয়ে আমি প্রমাণ করব যে তোমাকে ভালোবাসার জন্য তিনি ঠিক মানুষটিকেই বেছে নিয়েছেন।
+
+আমি সবসময় তোমাকে সম্মান করব।
+
+আমি সবসময় তোমাকে রক্ষা করব।
+
+আমি সবসময় তোমার পাশে দাঁড়িয়ে থাকব।
+
+আমি সবসময় তোমাকেই বেছে নেব।
+
+বারবার।
+
+প্রতিটি দিন।
+
+প্রতিটি জন্মে।
+
+যদি আমি হাজারটা জীবনও পেতাম, তবুও প্রতিটি পৃথিবীর প্রতিটি কোণে তোমাকেই খুঁজতাম, শুধু আবার নতুন করে তোমার প্রেমে পড়ার জন্য।
+
+তুমি আমার আজ।
+
+তুমি আমার আগামীকাল।
+
+তুমি আমার প্রতিটি স্বপ্ন।
+
+তুমি আমার জীবনের সবচেয়ে সুন্দর অধ্যায়।
+
+আর যত বছরই কেটে যাক না কেন, আমার হৃদয় আজকের মতোই একই ভালোবাসা নিয়ে সারাজীবন তোমার নামই উচ্চারণ করবে।
+
+I love you.
+I love you.
+I love you.
+I love you.
+I love you.
+I love you.
+I love you.
+I love you.
+I love you.
+I love you.
+I love you.
+I love you.
+I love you.
+I love you.
+I love you.
+I love you.
+I love you.
+I love you.
+I love you.
+I love you.
+I love you.
+I love you.
+I love you.
+I love you.
+I love you.
+I love you.
+I love you.
+I love you.
+I love you.
+I love you.
+I love you.
+I love you.
+I love you.
+I love you.
+I love you.
+I love you.
+I love you.
+I love you.
+I love you.
+I love you.
+I love you.
+I love you.
+I love you.
+I love you.
+I love you.
+I love you.
+I love you.
+I love you.
+I love you.
+I love you.
+
+চিরকাল তোমার, আজীবন তোমারই। ❤️.</div>
+    <div class="letter-footer">
+      <div class="letter-sig"  >— Somnath Banerjee</div>
+      <div class="letter-hearts">♥ ♥ ♥</div>
+    </div>
+  </div>
+</section>
+
+<footer>Made with love · Happy Girlfriend Day ♥</footer>
+
+<!-- AUDIO -->
+<audio id="audioEl" preload="auto" autoplay loop>
+  <source src="music/song.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+/* ── PETALS ── */
+(function(){
+  const canvas = document.getElementById('petalCanvas');
+  const ctx = canvas.getContext('2d');
+  let petals = [];
+  function resize(){ canvas.width = innerWidth; canvas.height = innerHeight; }
+  window.addEventListener('resize', resize); resize();
+
+  const colors = ['#f2c4ce','#c9687a','#d4a86a','#e8a0b0','#f5d0d8'];
+  for(let i=0;i<38;i++) petals.push({
+    x: Math.random()*innerWidth,
+    y: Math.random()*innerHeight - innerHeight,
+    r: 4 + Math.random()*7,
+    vx: (Math.random()-0.5)*0.6,
+    vy: 0.6 + Math.random()*1.2,
+    angle: Math.random()*Math.PI*2,
+    va: (Math.random()-0.5)*0.04,
+    color: colors[Math.floor(Math.random()*colors.length)],
+    opacity: 0.15 + Math.random()*0.25
+  });
+
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    petals.forEach(p=>{
+      p.x += p.vx; p.y += p.vy; p.angle += p.va;
+      if(p.y > innerHeight+20){ p.y = -20; p.x = Math.random()*innerWidth; }
+      ctx.save();
+      ctx.translate(p.x,p.y);
+      ctx.rotate(p.angle);
+      ctx.globalAlpha = p.opacity;
+      ctx.fillStyle = p.color;
+      ctx.beginPath();
+      ctx.ellipse(0,0,p.r,p.r*0.5,0,0,Math.PI*2);
+      ctx.fill();
+      ctx.restore();
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+/* ── GALLERY SLOTS ── */
+(function(){
+const grid=document.getElementById('galleryGrid');
+for(let i=1;i<=5;i++){
+ const slot=document.createElement('div');
+ slot.className='photo-slot';
+ const caps=['Your Beautiful Smile ❤️','The Eyes I Fell For ✨','My Happiness 🌹','My Forever ❤️','My World 🌍'];
+slot.innerHTML=`<img src="images/photo${i}.jpg" alt="Photo ${i}"><div class="caption">${caps[i-1]}</div>`;
+ grid.appendChild(slot);
+}
+})();
+
+/* ── MUSIC PLAYER ── */
+const audio = document.getElementById('audioEl');
+const disc  = document.getElementById('disc');
+const playIcon = document.getElementById('playIcon');
+const progressFill = document.getElementById('progressFill');
+const timeElapsed  = document.getElementById('timeElapsed');
+const timeDuration = document.getElementById('timeDuration');
+
+function fmt(s){ s=Math.floor(s||0); return `${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`; }
+
+audio.addEventListener('timeupdate',()=>{
+  const pct = audio.duration ? (audio.currentTime/audio.duration)*100 : 0;
+  progressFill.style.width = pct+'%';
+  timeElapsed.textContent  = fmt(audio.currentTime);
+  timeDuration.textContent = fmt(audio.duration);
+});
+audio.addEventListener('ended',()=>{
+  disc.classList.remove('spinning');
+  playIcon.innerHTML='<path d="M8 5v14l11-7z"/>';
+});
+
+function togglePlay(){
+  if(audio.paused){
+    
+    audio.play();
+    disc.classList.add('spinning');
+    playIcon.innerHTML='<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>';
+  } else {
+    audio.pause();
+    disc.classList.remove('spinning');
+    playIcon.innerHTML='<path d="M8 5v14l11-7z"/>';
+  }
+}
+function seekTo(t){ audio.currentTime=t; }
+function seekBy(s){ audio.currentTime=Math.min(audio.duration||0,audio.currentTime+s); }
+function seekClick(e){
+  const rect = document.getElementById('progressWrap').getBoundingClientRect();
+  const pct  = (e.clientX-rect.left)/rect.width;
+  if(audio.duration) audio.currentTime = pct*audio.duration;
+}
+function loadAudio(){}
+
+window.addEventListener('load',()=>{
+ const play=()=>audio.play().then(()=>disc.classList.add('spinning')).catch(()=>{});
+ play();
+ document.addEventListener('click',play,{once:true});
+});
+
+</script>
+</body>
+</html>
