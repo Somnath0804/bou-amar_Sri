@@ -662,7 +662,7 @@ I love you.
 
 <!-- AUDIO -->
 <audio id="audioEl" preload="auto" autoplay loop>
-  <source src="music/song.mp3" type="audio/mpeg">
+  <source src="song.mp3" type="audio/mpeg">
 </audio>
 
 <script>
@@ -714,7 +714,7 @@ for(let i=1;i<=5;i++){
  const slot=document.createElement('div');
  slot.className='photo-slot';
  const caps=['Your Beautiful Smile ❤️','The Eyes I Fell For ✨','My Happiness 🌹','My Forever ❤️','My World 🌍'];
-slot.innerHTML=`<img src="images/photo${i}.jpg" alt="Photo ${i}"><div class="caption">${caps[i-1]}</div>`;
+slot.innerHTML=`<img src="photo${i}.jpg" alt="Photo ${i}"><div class="caption">${caps[i-1]}</div>`;
  grid.appendChild(slot);
 }
 })();
